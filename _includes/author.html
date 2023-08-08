@@ -8,7 +8,7 @@
     </div>
 
     <div class="toright">
-        <h4 class="name">{{ site.authors[page.author].name }}</h4>
+        <h4 class="name"><a href="{{ site.authors[page.author].about }}">{{ site.authors[page.author].name }}</a></h4>
         <p class="bio">{{ site.authors[page.author].bio }}</p>
 
         <div class="share">
@@ -22,6 +22,7 @@
                 <span class="icon-twitter">Tweet</span>
             </a>
 
+            <!--
             <a
                 class="facebook"
                 href="javascript:void(0)"
@@ -30,11 +31,12 @@
                 <i class="fa-brands fa-facebook"></i>
                 <span class="icon-facebook-rect">Share</span>
             </a>
+            -->
 
-            <!-- <a class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&amp;url={{ site.url }}{{ page.url }}&amp;title={{ page.title }}&amp;summary={{ page.description }}&amp;source={{ site.url }}" target="_blank">
+            <a class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&amp;url={{ site.url }}{{ page.url }}&amp;title={{ page.title }}&amp;summary={{ page.description }}&amp;source={{ site.url }}" target="_blank">
                 <i class="fa-brands fa-linkedin"></i>
                 <span class="icon-linkedin">Share</span>
-            </a> -->
+            </a>
         </div>
     </div>
 </section>
