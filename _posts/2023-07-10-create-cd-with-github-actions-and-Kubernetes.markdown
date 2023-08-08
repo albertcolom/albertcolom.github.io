@@ -31,21 +31,20 @@ If you already have any application you can go to the next step.
 package main
 
 import (
-"fmt"
-"net/http"
-"os"
+    "fmt"
+    "net/http"
+    "os"
 )
 
 func handler(w http.ResponseWriter, r *http.Request) {
-var name, _ = os.Hostname()
-
-fmt.Fprintf(w, "<h1>This request was processed by host: %s</h1>\n", name)
+    var name, _ = os.Hostname()
+    fmt.Fprintf(w, "<h1>This request was processed by host: %s</h1>\n", name)
 }
 
 func main() {
-fmt.Fprintf(os.Stdout, "Web Server started. Listening on 0.0.0.0:80\n")
-http.HandleFunc("/", handler)
-http.ListenAndServe(":80", nil)
+    fmt.Fprintf(os.Stdout, "Web Server started. Listening on 0.0.0.0:80\n")
+    http.HandleFunc("/", handler)
+    http.ListenAndServe(":80", nil)
 }
 {% endhighlight %}
 
@@ -112,7 +111,7 @@ clusters:
       server: https://your-server.com:6443
   name: default
 contexts:
-  - context:
+- context:
     cluster: default
     user: default
   name: default
@@ -152,7 +151,7 @@ In the first step build the docker image and publish on the container registry, 
 build:
     runs-on: ubuntu-latest
     steps:
-        - name: Checkout
+      - name: Checkout
         uses: actions/checkout@v3
         
       - name: Log in to the Container registry
@@ -214,24 +213,24 @@ spec:
     spec:
         containers:
             - name: demo-app
-                image: ghcr.io/path-to-image/demo-app
-                env:
-                    - name: GIN_MODE
-                        value: "release"
-                  ports:
-                    - containerPort: 80
-                  livenessProbe:
-                    httpGet:
-                        path: /
-                        port: 80
-                    initialDelaySeconds: 5
-                    periodSeconds: 3
-                  readinessProbe:
-                    httpGet:
-                        path: /
-                        port: 80
-                    initialDelaySeconds: 5
-                    periodSeconds: 3
+              image: ghcr.io/path-to-image/demo-app
+              env:
+                - name: GIN_MODE
+                  value: "release"
+              ports:
+                - containerPort: 80
+              livenessProbe:
+                httpGet:
+                    path: /
+                    port: 80
+                initialDelaySeconds: 5
+                periodSeconds: 3
+              readinessProbe:
+                httpGet:
+                    path: /
+                    port: 80
+                initialDelaySeconds: 5
+                periodSeconds: 3
 {% endhighlight %}
 
 {% highlight yaml %}
@@ -244,8 +243,8 @@ metadata:
 spec:
     ports:
         - port: 80
-        protocol: TCP
-        targetPort: 80
+          protocol: TCP
+          targetPort: 80
     type: NodePort
     selector:
         app: demo-app
@@ -263,15 +262,15 @@ spec:
     ingressClassName: nginx
     rules:
         - host: domain.com
-            http:
-                paths:
-                      - path: /
-                      pathType: Prefix
-                      backend:
-                          service:
-                              name: demo-app
-                              port:
-                                number: 80
+          http:
+            paths:
+                  - path: /
+                    pathType: Prefix
+                    backend:
+                      service:
+                          name: demo-app
+                          port:
+                            number: 80
 {% endhighlight %}
 
 Finally, once we have the manifests and secrets, we can create the last step of the workflow.
@@ -291,24 +290,24 @@ deploy:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
     
-        - name: Kubernetes set context
-          uses: Azure/k8s-set-context@v3
-          with:
-            method: kubeconfig
-            kubeconfig: ${{ secrets.KUBE_CONFIG }}
+      - name: Kubernetes set context
+        uses: Azure/k8s-set-context@v3
+        with:
+          method: kubeconfig
+          kubeconfig: ${{ secrets.KUBE_CONFIG }}
     
-        - name: Deploy
-          uses: Azure/k8s-deploy@v4.4
-          with:
-            action: deploy
-            strategy: basic
-            imagepullsecrets: |
-              dockerconfigjson-github-com
-            manifests: |
-              ./infrastructure/kubernetes/demo-app-deployment.yml
-              ./infrastructure/kubernetes/demo-app-service.yml
-              ./infrastructure/kubernetes/demo-app-ingress.yml
-            images: ghcr.io/${{ github.repository }}/demo-app:${{ github.sha }}
+      - name: Deploy
+        uses: Azure/k8s-deploy@v4.4
+        with:
+          action: deploy
+          strategy: basic
+          imagepullsecrets: |
+            dockerconfigjson-github-com
+          manifests: |
+            ./infrastructure/kubernetes/demo-app-deployment.yml
+            ./infrastructure/kubernetes/demo-app-service.yml
+            ./infrastructure/kubernetes/demo-app-ingress.yml
+          images: ghcr.io/${{ github.repository }}/demo-app:${{ github.sha }}
 {% endhighlight %}
 
 And just commit in your project the complete CD workflow config `.github/workflow/cd.yaml`.
@@ -325,7 +324,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-      uses: actions/checkout@v3
+        uses: actions/checkout@v3
 
       - name: Log in to the Container registry
         uses: docker/login-action@v2
@@ -349,7 +348,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-      uses: actions/checkout@v3
+        uses: actions/checkout@v3
 
       - name: Log in to the Container registry
         uses: docker/login-action@v2
@@ -385,4 +384,3 @@ Then you can go to `Actions` section in your repository and show all workflows a
 And that's all just have fun and deploy :-)
 
 You can read the article on [Medium](https://medium.com/@skolom_93361/how-to-create-cd-with-github-actions-and-kubernetes-dbf004dea51){:target="_blank"}
-
