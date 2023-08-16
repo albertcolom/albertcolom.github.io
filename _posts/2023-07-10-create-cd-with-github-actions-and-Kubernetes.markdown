@@ -57,7 +57,7 @@ go run main.com
 If the application its works then we can prepare docker image to "Dokcerize" the application.
 
 ### Build docker image from scrath
-Firstly, we create a file named `infrastucture/docker/Dockerfile` to contain all config. We use the `alpine image as a builder to compile de Go binary and then use image from `scratch to copy binary with SSL certificates and define de binary as entrypoint.
+Firstly, we create a file named `infrastucture/docker/Dockerfile` to contain all config. We use the `alpine` image as a builder to compile de Go binary and then use image from `scratch` to copy binary with SSL certificates and define de binary as entrypoint.
 
 This way we get a minimal docker image that contain your binary application than ***only around 5 MB!***
 
@@ -101,7 +101,7 @@ docker build -t demo-app:1 . -f ./infrastucture/docker/Dockerfile
 ### Connect your K3s cluster with Github
 For Github Actions can access to your k3s cluster you need import de kubeconfig into secrets actions.
 
-In k3s you can found the `kubeconfig` on `/etc/rancher/k3s/k3s.yaml. You kubeconfig will like somehow like this:
+In k3s you can found the `kubeconfig` on `/etc/rancher/k3s/k3s.yaml`. You kubeconfig will like somehow like this:
 
 {% highlight yaml %}
 apiVersion: v1
