@@ -31,6 +31,12 @@
     </a>
     {% endif %}
 
+    {% if site.dev %}
+    <a class="link" data-title="https://dev.to/{{ site.dev }}" aria-label="Show my Dev" href="https://dev.to/{{ site.dev }}" target="_blank"  rel="noopener">
+        <i class="fa-brands fa-dev"></i>
+    </a>
+    {% endif %}
+
     {% if site.github %}
     <a class="link" data-title="github.com/{{ site.github }}" aria-label="Show my GitHub" href="https://github.com/{{ site.github }}" target="_blank"  rel="noopener">
         <i class="fa-brands fa-github"></i>
