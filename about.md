@@ -4,7 +4,7 @@ layout: page
 ---
 ![Profile Image]({% if site.external-image %}{{ site.picture }}{% else %}{{ site.url }}/{{ site.picture }}{% endif %})
 
-## 🤘 About
+## 🤘 Hi there
 
 Lorem Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -18,7 +18,7 @@ consequat.
 - 🍺 Beer 
 
 ## 📧 You can contact me at
-- [skolom@gmail.com](skolom@gmail.com){:target="_blank"}
+- [skolom@gmail.com](mailto:skolom@gmail.com){:target="_blank"}
 - [Linkedin](https://www.linkedin.com/in/albert-colom-mulet){:target="_blank"}
 
 ## 👨🏽‍💻 Follow my work
