@@ -96,7 +96,7 @@ abstract class AggregateRoot
 
 
 And create a simple root entity to use which uses the above class and record an event when construct.
-Firstly create a simple Event like a DTO called `FooWasCreated.
+Firstly create a simple Event like a DTO called `FooWasCreated`.
 
 > src/Context/Foo/Domain/Write/Event/FooWasCreated.php
 
@@ -272,7 +272,7 @@ services:
 {% endhighlight %}
 
 ## Create Doctrine Listener to publish DomainEvents when flush
-The idea is quite simple when flush the entity the listener gets the entities to update from Doctrine `UnitOfWork and publish the domain events if they have.
+The idea is quite simple when flush the entity the listener gets the entities to update from Doctrine `UnitOfWork` and publish the domain events if they have.
 
 Once the events are published Symfony Messenger takes care of sending the Queue system.
 
