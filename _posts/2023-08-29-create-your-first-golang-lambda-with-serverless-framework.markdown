@@ -173,7 +173,7 @@ _Try the service by Serverless Framework_
 
 #### Bonus
 
-You can remove all the application incluiding teh infrastructure by de _Serverless Framework_.
+You can remove all the application including the infrastructure by de _Serverless Framework_.
 
 {% highlight bash %}
 serverless remove
