@@ -35,7 +35,7 @@ Using _cert-manager_ on _Kubernetes_ simplifies **SSL/TLS** certificate manageme
 curl -sfL https://get.k3s.io | sh -
 {% endhighlight %}
 
-If you want to have access to the _k3s_ cluster outside the node, you can use the following parameter when creating the cluster `--tls-san`.
+If you want to have access to the _k3s_ cluster outside the node, you can use the following parameter when creating the cluster `--tls-san`.
 
 {% highlight bash %}
 curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--tls-san <public ip address or hostname>" sh -
