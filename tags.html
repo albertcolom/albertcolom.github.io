@@ -3,8 +3,8 @@ layout: page
 title: Tags
 description: PHP, Symfony, Doctrine, GO, DDD, Pipeline, Kubernetes, Closures, Serverless, Lambda, SSL and more
 ---
-<section class="list">
-    <h1 class="title">Tags</h1>
+<section class="list text-center">
+    <h2 class="title">Tags</h2>
 
     {% assign tags_list = site.tags %}
 
@@ -21,7 +21,7 @@ description: PHP, Symfony, Doctrine, GO, DDD, Pipeline, Kubernetes, Closures, Se
     {% assign tags_list = nil %}
 </section>
 
-<hr>
+<div class="breaker"></div>
 
 <section class="tag-list">
     {% for tag in site.tags  %}
