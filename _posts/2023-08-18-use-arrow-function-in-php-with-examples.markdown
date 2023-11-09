@@ -6,7 +6,7 @@ image: https://miro.medium.com/v2/resize:fit:640/format:webp/1*MZ8q2lwR54p9UOXPR
 headerImage: false
 tag:
 - PHP
-- clousures
+- closures
 category: blog
 author: albertcolom
 description: It is available since PHP version 7.4 but many do not understand how to use it.
