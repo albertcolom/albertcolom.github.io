@@ -12,7 +12,7 @@ description: In this article we will see how to define a custom PHP collection.
 #externalLink: https://medium.com/@skolom_93361/how-to-publish-domain-events-with-doctrine-listener-f48a8a18681d
 ---
 
-![Markdowm Image](https://miro.medium.com/v2/resize:fit:1206/format:webp/1*Tc6XAkhz9ewQq8W5XTwsLQ.png)
+![Array vs Collection](https://miro.medium.com/v2/resize:fit:1206/format:webp/1*Tc6XAkhz9ewQq8W5XTwsLQ.png)
 
 In this article we will see how to define a custom PHP collection
 

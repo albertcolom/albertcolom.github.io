@@ -13,7 +13,7 @@ author: albertcolom
 description: How to install k3s + Traefik + CertManager + LetsEncrypt.
 ---
 
-![Markdowm Image](https://miro.medium.com/v2/resize:fit:4800/format:webp/1*QjNtMXMX2E5oHWF4lrKAbw.png)
+![Kubernetes + Traefik + CertManager + LetsEncrypt](https://miro.medium.com/v2/resize:fit:4800/format:webp/1*QjNtMXMX2E5oHWF4lrKAbw.png)
 
 How to install k3s + Traefik + CertManager + LetsEncrypt
 

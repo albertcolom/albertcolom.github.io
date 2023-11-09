@@ -13,7 +13,7 @@ author: albertcolom
 description: This article explains step-by-step how to implement a simple AWS Lambda with Serverless Framework.
 ---
 
-![Markdowm Image](https://miro.medium.com/v2/resize:fit:4800/format:webp/1*pNKc4T-lqOW1v17lYVUFjQ.png)
+![Golang Lambda With Serverless Framework](https://miro.medium.com/v2/resize:fit:4800/format:webp/1*pNKc4T-lqOW1v17lYVUFjQ.png)
 
 This article explains step-by-step how to implement a simple AWS Lambda with _Serverless Framework_.
 
@@ -55,7 +55,7 @@ npm install -g serverless
 
 **_NOTE_** _: If you type_ _`serverless` in the terminal you can choose a template to generate a skeleton of the project._
 
-![](https://cdn-images-1.medium.com/max/660/1*tMwp92kN5AJ8QbFupJSM9w.png)
+![Serlverless CLI](https://cdn-images-1.medium.com/max/660/1*tMwp92kN5AJ8QbFupJSM9w.png)
 _Serverless crete skeleton project_
 
 #### Step 2: Create simple Health Checks in Go
@@ -146,7 +146,7 @@ serverless deploy
 
 **_NOTE_** _: If you get more information about the deploy you can add_ _`--verbose parameter`._
 
-![](https://cdn-images-1.medium.com/max/1024/1*EZKEb5uxupkzo17ZOArwqQ.png)
+![Serverless deploy](https://cdn-images-1.medium.com/max/1024/1*EZKEb5uxupkzo17ZOArwqQ.png)
 _Serverless deploy output_
 
 **And thats all!** the framework takes the responsibility to create the necessary infrastructure on AWS and return the URL to the defined endpoint.
@@ -159,7 +159,7 @@ curl -X GET https://jqlar1r8pd.execute-api.eu-central-1.amazonaws.com/dev/health
 
 Or if you prefer you can try via [Postman](https://www.postman.com/){:target="_blank"}
 
-![](https://cdn-images-1.medium.com/max/1024/1*bQqw9mw5c7VTWBBSyDcvwA.png)
+![Postman](https://cdn-images-1.medium.com/max/1024/1*bQqw9mw5c7VTWBBSyDcvwA.png)
 _Try the endpoint by postman_
 
 You can also use the same _Serverless Framework_
@@ -168,7 +168,7 @@ You can also use the same _Serverless Framework_
 serverless invoke -f health
 {% endhighlight %}
 
-![](https://cdn-images-1.medium.com/max/1024/1*BPozZoZwXamGnxElstKRZQ.png)
+![Serverless health](https://cdn-images-1.medium.com/max/1024/1*BPozZoZwXamGnxElstKRZQ.png)
 _Try the service by Serverless Framework_
 
 #### Bonus
@@ -179,7 +179,7 @@ You can remove all the application including the infrastructure by de _Serverles
 serverless remove
 {% endhighlight %}
 
-![](https://cdn-images-1.medium.com/max/1024/1*u5XSEE08U4itb0URCbye1Q.png)
+![Serverless remove](https://cdn-images-1.medium.com/max/1024/1*u5XSEE08U4itb0URCbye1Q.png)
 
 ### Conclusion
 

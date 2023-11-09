@@ -15,7 +15,7 @@ description: Publish domain events on the Queue system when Doctrine flush entit
 #externalLink: https://medium.com/@skolom_93361/how-to-publish-domain-events-with-doctrine-listener-f48a8a18681d
 ---
 
-![Markdowm Image](https://miro.medium.com/v2/resize:fit:4800/format:webp/1*xcmyZnE7xxZnvGQHacH-sw.png)
+![Publish domain events with doctrine listener on DDD architecture](https://miro.medium.com/v2/resize:fit:4800/format:webp/1*xcmyZnE7xxZnvGQHacH-sw.png)
 
 Publish domain events on the Queue system when Doctrine flush entity using clean architectures.
 
