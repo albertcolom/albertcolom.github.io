@@ -1,5 +1,5 @@
 ---
-title: "Create CD with GitHub Actions and Kubernetes"
+title: "How to create CD with GitHub Actions and Kubernetes in your Golang application"
 layout: post
 date: 2023-07-10 00:00
 image: https://miro.medium.com/v2/resize:fit:4800/format:webp/1*BXSy9C4wxkygjCLJf5m7BA.jpeg
