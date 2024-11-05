@@ -209,3 +209,5 @@ Regex pattern that matches a valid Slug.
 ```
 /^[a-z0-9]+(?:-[a-z0-9]+)*$/
 ```
+
+You can read the article on [Medium](https://medium.com/gitconnected/top-10-most-used-regex-patterns-8c8372e50327){:target="_blank"}
