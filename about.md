@@ -9,10 +9,7 @@ description: A little bit about myself
 
 ## 🤘 Hi there
 
-Lorem Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat.
+I'm a backend developer from Barcelona based in Berlin
 
 ## ⭐ Some of my interests
 - 💻 Programming
@@ -21,7 +18,7 @@ consequat.
 - 🍺 Beer 
 
 ## 📧 You can contact me at
-- [skolom@gmail.com](mailto:skolom@gmail.com){:target="_blank"}
+- [Email](mailto:skolom@gmail.com){:target="_blank"}
 - [Linkedin](https://www.linkedin.com/in/albert-colom-mulet){:target="_blank"}
 - [Twitter](https://twitter.com/_albertcolom){:target="_blank"}
 
