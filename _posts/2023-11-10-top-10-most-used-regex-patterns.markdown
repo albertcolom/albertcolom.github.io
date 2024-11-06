@@ -25,7 +25,7 @@ Regex pattern that matches a valid email address.
 
 **_Example:_** `name@domain.com` ➞ [https://regex101.com/r/1sIXyA/1](https://regex101.com/r/1sIXyA/1){:target="_blank"}{:target="_blank"}
 
-```
+```bash
 /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6})*$/
 ```
 
@@ -37,7 +37,7 @@ Regex pattern that matches a valid URL starting with http or https.
 
 **_Example:_** `https://www.domain.com/some-path` ➞ [https://regex101.com/r/gTO9nq/1](https://regex101.com/r/gTO9nq/1){:target="_blank"}{:target="_blank"}
 
-```
+```bash
 /^(https?:\/\/)?([a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5})(:[0-9]{1,5})?(\/.*)?$/
 ```
 
@@ -51,7 +51,7 @@ Regex pattern that matches a valid date in different formats.
 
 **_Example:_** `2001–10-25` ➞ [https://regex101.com/r/xZOOo9/1](https://regex101.com/r/xZOOo9/1){:target="_blank"}
 
-```
+```bash
 /^([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))$/
 ```
 
@@ -59,7 +59,7 @@ Regex pattern that matches a valid date in different formats.
 
 **_Example:_** `25–10-2001` ➞ [https://regex101.com/r/p4pFsm/1](https://regex101.com/r/p4pFsm/1){:target="_blank"}
 
-```
+```bash
 /^((0[1-9]|[12]\d|3[01])-(0[1-9]|1[0-2])-[12]\d{3})$/
 ```
 
@@ -73,7 +73,7 @@ Regex pattern that matches a valid time in different formats.
 
 **_Example:_** `11:45 PM` ➞ [https://regex101.com/r/vq9s8Z/1](https://regex101.com/r/vq9s8Z/1){:target="_blank"}
 
-```
+```bash
 /^(1[0-2]|0?[1-9]):[0-5][0-9] (AM|PM)$/
 ```
 
@@ -81,7 +81,7 @@ Regex pattern that matches a valid time in different formats.
 
 **_Example:_** `19:45:54` ➞ [https://regex101.com/r/cMqbxL/1](https://regex101.com/r/cMqbxL/1){:target="_blank"}
 
-```
+```bash
 /^(0[0-9]|1[0-9]|2[1-4]):(0[0-9]|[1-5][0-9]):(0[0-9]|[1-5][0-9])$/
 ```
 
@@ -95,7 +95,7 @@ Regex pattern that matches a valid datetime.
 
 **_Example:_** `2001–10-25 10:59:59` ➞ [https://regex101.com/r/GcnzIJ/1](https://regex101.com/r/GcnzIJ/1){:target="_blank"}
 
-```
+```bash
 /^([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]) (0[0-9]|1[0-9]|2[1-4]):(0[0-9]|[1-5][0-9]):(0[0-9]|[1-5][0-9]))$/
 ```
 
@@ -103,7 +103,7 @@ Regex pattern that matches a valid datetime.
 
 **_Example:_** `10–11-2001 10:59:59` ➞ [https://regex101.com/r/qfc0oc/1](https://regex101.com/r/qfc0oc/1){:target="_blank"}
 
-```
+```bash
 /^((0[1-9]|[12]\d|3[01])-(0[1-9]|1[0-2])-[12]\d{3} (0[0-9]|1[0-9]|2[1-4]):(0[0-9]|[1-5][0-9]):(0[0-9]|[1-5][0-9]))$/
 ```
 
@@ -115,7 +115,7 @@ Regex pattern that matches a valid UUID (Universal Unique Identifier).
 
 **_Example:_** `20354d7a-e4fe-47af-8ff6-187bca92f3f9` ➞ [https://regex101.com/r/ESgo7B/1](https://regex101.com/r/ESgo7B/1){:target="_blank"}
 
-```
+```bash
 /^[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}$/
 ```
 
@@ -129,7 +129,7 @@ Regex pattern that matches a valid IP Address version 4 and version 6.
 
 **_Example:_** `127.3.1.1` ➞ [https://regex101.com/r/6kWr5c/1](https://regex101.com/r/6kWr5c/1){:target="_blank"}
 
-```
+```bash
 /^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$/ 
 ```
 
@@ -137,12 +137,11 @@ Regex pattern that matches a valid IP Address version 4 and version 6.
 
 **_Example:_** `ee1a:5b37:e33f:811d:1cc8:3607:af73:1e23` ➞ [https://regex101.com/r/4yy1CE/1](https://regex101.com/r/4yy1CE/1){:target="_blank"}
 
-```
+```bash
 /^(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))$/
 ```
 
 ---
-
 
 ## 8- Regex File Validation
 
@@ -152,7 +151,7 @@ Regex pattern that matches a valid file path.
 
 **_Example:_** `/some/path-to-fie/resource.zip` ➞ [https://regex101.com/r/3jdxKY/1](https://regex101.com/r/3jdxKY/1){:target="_blank"}
 
-```
+```bash
 /^((\/|\\|\/\/|https?:\\\\|https?:\/\/)[a-z0-9_@\-^!#$%&+={}.\/\\\[\]]+)+\.[a-z]+$/
 ```
 
@@ -160,7 +159,7 @@ Regex pattern that matches a valid file path.
 
 **_Example:_** `resource.zip` ➞ [https://regex101.com/r/mRqdIg/1](https://regex101.com/r/mRqdIg/1){:target="_blank"}
 
-```
+```bash
 /^[\w,\s-]+\.[A-Za-z]{3}$/
 ```
 
@@ -168,7 +167,7 @@ Regex pattern that matches a valid file path.
 
 **_Example:_** `resource.png` ➞ [https://regex101.com/r/Rj980C/1](https://regex101.com/r/Rj980C/1){:target="_blank"}
 
-```
+```bash
 /^[\w,\s-]+\.(jpg|jpeg|png|gif|pdf)$/
 ```
 
@@ -184,7 +183,7 @@ Should have 1 lowercase letter, 1 uppercase letter, 1 number, 1 special characte
 
 **_Example:_** `mYpa$$word123` ➞ [https://regex101.com/r/mAC0uS/1](https://regex101.com/r/mAC0uS/1){:target="_blank"}
 
-```
+```bash
 /^(?=(.*[0-9]))(?=.*[\!@#$%^&*()\\[\]{}\-_+=~`|:;"'<>,.\/?])(?=.*[a-z])(?=(.*[A-Z]))(?=(.*)).{8,}$/
 ```
 
@@ -194,7 +193,7 @@ Should have 1 lowercase letter, 1 uppercase letter, 1 number, and be at least 8 
 
 **_Example:_** `passWord123` ➞ [https://regex101.com/r/7JBDjg/1](https://regex101.com/r/7JBDjg/1){:target="_blank"}
 
-```
+```bash
 /^(?=(.*[0-9]))((?=.*[A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z]))^.{8,}$/
 ```
 
@@ -206,7 +205,7 @@ Regex pattern that matches a valid Slug.
 
 **_Example:_** `some-valid-slug` ➞ [https://regex101.com/r/0Bo0eH/1](https://regex101.com/r/0Bo0eH/1){:target="_blank"}
 
-```
+```bash
 /^[a-z0-9]+(?:-[a-z0-9]+)*$/
 ```
 

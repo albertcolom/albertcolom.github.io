@@ -30,7 +30,7 @@ First of all, create an abstract Entity of which they will inherit all domain ev
 
 > src/Shared/Domain/Write/Event/DomainEvent.php
 
-{% highlight php %}
+```php
 <?php
 
 declare(strict_types=1);
@@ -53,7 +53,7 @@ abstract class DomainEvent
         return $this->occurredOn;
     }
 }
-{% endhighlight %}
+```
 
 ### Create AggregateRoot Entity
 Create an abstract class called `AggregateRoot` witch inherit all root entities.
@@ -61,7 +61,7 @@ The `AggregateRoot` is used to define the main entity from aggregate and can sto
 
 > src/Shared/Domain/Write/Aggregate/AggregateRoot.php
 
-{% highlight php %}
+```php
 <?php
 
 declare(strict_types=1);
@@ -92,15 +92,14 @@ abstract class AggregateRoot
         return $recordedEvents;
     }
 }
-{% endhighlight %}
-
+```
 
 And create a simple root entity to use which uses the above class and record an event when construct.
 Firstly create a simple Event like a DTO called `FooWasCreated`.
 
 > src/Context/Foo/Domain/Write/Event/FooWasCreated.php
 
-{% highlight php %}
+```php
 <?php
 
 declare(strict_types=1);
@@ -120,13 +119,13 @@ final class FooWasCreated extends DomainEvent
         parent::__construct($occurredOn);
     }
 }
-{% endhighlight %}
+```
 
 Then can create a root entity to record the event and store it in memory when construct the entity.
 
 > src/Context/Foo/Domain/Write/Foo.php
 
-{% highlight php %}
+```php
 <?php
 
 declare(strict_types=1);
@@ -164,7 +163,7 @@ final class Foo extends AggregateRoot
         return $this->createdAt;
     }
 }
-{% endhighlight %}
+```
 
 **NOTE:** *This entity must define as Doctrine mapping because when persist this entity trigger the events. In this example not define doctrine infrastructure layer to persist the entity, I think you can find a lot of tutorials about that and I don't want to make this tutorial longer.*
 
@@ -173,7 +172,7 @@ Define the interface on a shared domain in the write layer.
 
 > src/Shared/Domain/Write/Bus/EventBus.php
 
-{% highlight php %}
+```php
 <?php
 
 declare(strict_types=1);
@@ -186,13 +185,13 @@ interface EventBus
 {
     public function publish(DomainEvent ...$domainEvents): void;
 }
-{% endhighlight %}
+```
 
 Implement the interface with the concrete Symfony Messenger on the infrastructure layer. This bus is quite simple just has one method `publish` is responsible for dispatching messages on `MessageBus`.
 
 > src/Shared/Infrastructure/Bus/MessengerEventBus.php
 
-{% highlight php %}
+```php
 <?php
 
 declare(strict_types=1);
@@ -220,7 +219,7 @@ final readonly class MessengerEventBus implements EventBus
         }
     }
 }
-{% endhighlight %}
+```
 
 Define Bus service messenger on `messenger.yaml` in this example define `async` bus to publish events on the `ampqp` transport with RabbitMQ.
 
@@ -230,15 +229,15 @@ In this case, we use `ampqp` because no need other dependences than Symfony Mess
 
 > .env
 
-{% highlight bash %}
+```bash
 MESSENGER_TRANSPORT_DSN=amqp://guest:guest@rabbitmq:5672/%2f/messag
-{% endhighlight %}
+```
 
 > config/packages/messenger.yaml
 
 To simplify the example I just define de basic configuration of the event bus but you should define the other bus like a query or command and the correct retry policy.
 
-{% highlight yaml %}
+```yaml
 framework:
     messenger:
         transports:
@@ -249,13 +248,13 @@ framework:
                 default_middleware: allow_no_handlers
         routing:
             'App\Shared\Domain\Write\Event\DomainEvent': ampqp
-{% endhighlight %}
+```
 
 > config/services.yaml
 
 To simplify this example I just defined the minimum services definition for this case but you need to define your different services need for your application.
 
-{% highlight yaml %}
+```yaml
 parameters:
 
 services:
@@ -269,14 +268,14 @@ services:
     App\Shared\Infrastructure\Bus\MessengerEventBus:
         arguments:
             - '@async.event.bus'
-{% endhighlight %}
+```
 
 ## Create Doctrine Listener to publish DomainEvents when flush
 The idea is quite simple when flush the entity the listener gets the entities to update from Doctrine `UnitOfWork` and publish the domain events if they have.
 
 Once the events are published Symfony Messenger takes care of sending the Queue system.
 
-{% highlight php %}
+```php
 <?php
 
 declare(strict_types=1);
@@ -329,13 +328,13 @@ final readonly class DoctrinePublishDomainEventsOnFlushListener
         }
     }
 }
-{% endhighlight %}
+```
 
 And define the listener on a service definition.
 
 > config/services.yaml
 
-{% highlight yaml %}
+```yaml
 parameters:
 
 services:
@@ -353,7 +352,7 @@ services:
     App\Shared\Infrastructure\Listener\DoctrinePublishDomainEventsOnFlushListener:
             tags:
                 - { name: doctrine.event_listener, event: onFlush }
-{% endhighlight %}
+```
 
 **NOTE:** *You can find more doctrine events on: <https://www.doctrine-project.org/projects/doctrine-orm/en/2.15/reference/events.html#events-overview>*
 

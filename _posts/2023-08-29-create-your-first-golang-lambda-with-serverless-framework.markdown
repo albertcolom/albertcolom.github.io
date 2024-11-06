@@ -49,9 +49,9 @@ The [_Serverless Framework_](https://www.serverless.com/){:target="_blank"} is a
 
 Open your terminal and run the following command to install the _Serverless Framework_ globally:
 
-{% highlight bash %}
+```bash
 npm install -g serverless
-{% endhighlight %}
+```
 
 **_NOTE_** _: If you type_ _`serverless` in the terminal you can choose a template to generate a skeleton of the project._
 
@@ -64,17 +64,17 @@ Create a directory from the project and initialize a Golang project.
 
 **_NOTE_** _: Feel free to change the name of the project._
 
-{% highlight bash %}
+```bash
 mkdir GoServerless
 
 cd GoServerless
 
 go mod init go-lambda-serverless
-{% endhighlight %}
+```
 
 Finally, create your `main.go` with a simple health check.
 
-{% highlight go %}
+```go
 package main
 
 import (
@@ -92,25 +92,25 @@ func Handler(ctx context.Context, request events.LambdaFunctionURLRequest) (Resp
 func main() {
  lambda.Start(Handler)
 }
-{% endhighlight %}
+```
 
 Then install all dependencies
 
-{% highlight bash %}
+```bash
 go mod tidy
-{% endhighlight %}
+```
 
 #### Step 3: Compile de project
 
-{% highlight bash %}
+```bash
 env GOARCH=amd64 GOOS=linux go build -ldflags="-s -w" -o bin/health main.go
-{% endhighlight %}
+```
 
 #### Step 4: Create a Serverless config file
 
 Create _`serverless.yml`_ on the root project with the content:
 
-{% highlight yaml %}
+```yaml
 service: go-serverless # Define your service name
 
 provider:
@@ -132,7 +132,7 @@ functions:
           method: get
           cors: true
           private: false
-{% endhighlight %}
+```
 
 **_NOTE_** _: You can find the all information on the oficial documentation:_ [_https://www.serverless.com/framework/docs/providers/aws/guide/serverless.yml_](https://www.serverless.com/framework/docs/providers/aws/guide/serverless.yml){:target="_blank"}
 
@@ -140,22 +140,22 @@ functions:
 
 Thanks to the _Serverless framework_ it is very easy to deploy any application, just `serverless deploy` on the console and the magic happens :-)
 
-{% highlight bash %}
+```bash
 serverless deploy
-{% endhighlight %}
+```
 
-**_NOTE_** _: If you get more information about the deploy you can add_ _`--verbose parameter`._
+**_NOTE_** _: If you get more information about the deploy you can add_ `--verbose parameter`.
 
 ![Serverless deploy](https://cdn-images-1.medium.com/max/1024/1*EZKEb5uxupkzo17ZOArwqQ.png)
 _Serverless deploy output_
 
-**And thats all!** the framework takes the responsibility to create the necessary infrastructure on AWS and return the URL to the defined endpoint.
+**And that's all!** the framework takes the responsibility to create the necessary infrastructure on AWS and return the URL to the defined endpoint.
 
 You can try the endpoint by [CURL](https://curl.se/){:target="_blank"}
 
-{% highlight bash %}
+```bash
 curl -X GET https://jqlar1r8pd.execute-api.eu-central-1.amazonaws.com/dev/health
-{% endhighlight %}
+```
 
 Or if you prefer you can try via [Postman](https://www.postman.com/){:target="_blank"}
 
@@ -164,9 +164,9 @@ _Try the endpoint by postman_
 
 You can also use the same _Serverless Framework_
 
-{% highlight bash %}
+```bash
 serverless invoke -f health
-{% endhighlight %}
+```
 
 ![Serverless health](https://cdn-images-1.medium.com/max/1024/1*BPozZoZwXamGnxElstKRZQ.png)
 _Try the service by Serverless Framework_
@@ -175,9 +175,9 @@ _Try the service by Serverless Framework_
 
 You can remove all the application including the infrastructure by de _Serverless Framework_.
 
-{% highlight bash %}
+```bash
 serverless remove
-{% endhighlight %}
+```
 
 ![Serverless remove](https://cdn-images-1.medium.com/max/1024/1*u5XSEE08U4itb0URCbye1Q.png)
 

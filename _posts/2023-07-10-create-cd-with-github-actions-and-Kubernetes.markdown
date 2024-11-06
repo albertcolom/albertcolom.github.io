@@ -27,7 +27,7 @@ A simple illustrative example with http server on port 80 with basic handle resp
 
 If you already have any application you can go to the next step.
 
-{% highlight go %}
+```go
 package main
 
 import (
@@ -46,13 +46,13 @@ func main() {
     http.HandleFunc("/", handler)
     http.ListenAndServe(":80", nil)
 }
-{% endhighlight %}
+```
 
 You can run the application to ensure works correctly:
 
-{% highlight bash %}
+```bash
 go run main.com
-{% endhighlight %}
+```
 
 If the application its works then we can prepare docker image to "Dokcerize" the application.
 
@@ -61,7 +61,7 @@ Firstly, we create a file named `infrastucture/docker/Dockerfile` to contain all
 
 This way we get a minimal docker image that contain your binary application than ***only around 5 MB!***
 
-{% highlight bash %}
+```bash
 # Use latest Go alpine image as builder
 FROM golang:alpine AS build
 
@@ -85,13 +85,13 @@ COPY --from=build /app/bin/demo /app/bin/demo
 
 # Define your binary as entrypoint
 ENTRYPOINT ["/app/bin/demo"]
-{% endhighlight %}
+```
 
 And we can make the build of the image:
 
-{% highlight bash %}
+```bash
 docker build -t demo-app:1 . -f ./infrastucture/docker/Dockerfile
-{% endhighlight %}
+```
 
 - `-t`: Name and optionally a tag in the `name:tag` format
 - `-f`: Name of the Dockerfile (Default is `PATH/Dockerfile`)
@@ -103,7 +103,7 @@ For Github Actions can access to your k3s cluster you need import de kubeconfig 
 
 In k3s you can found the `kubeconfig` on `/etc/rancher/k3s/k3s.yaml`. You kubeconfig will like somehow like this:
 
-{% highlight yaml %}
+```yaml
 apiVersion: v1
 clusters:
 - cluster:
@@ -123,7 +123,7 @@ users:
   user:
     client-certificate-data: LS0...
     client-key-data: LS0...
-{% endhighlight %}
+```
 
 Then you go to your project from Github and add the secret named `KUBE_CONFIG` with the k3s.yaml content.
 
@@ -136,18 +136,18 @@ Finally we come to the long awaited section. We will see how to create a flow wi
 
 Create a file into root of main project: `.github/workflow/cd.yaml where we create a workflow triggered on a push/merge on your principal branch, in this case `main branch.
 
-{% highlight yaml %}
+```yaml
 on:
     push:
         branches: [ "main" ]
-{% endhighlight %}
+```
 
 ### First step
 In the first step build the docker image and publish on the container registry, in this case use the `ghcr` (GitHub Container Registry).
 
 > You can found more information about github packages: <https://docs.github.com/en/packages/learn-github-packages>
 
-{% highlight yaml %}
+```yaml
 build:
     runs-on: ubuntu-latest
     steps:
@@ -169,7 +169,7 @@ build:
           file: ./infrastructure/docker/Dockerfile
           push: true
           tags: ghcr.io/${{ github.repository }}/demo-app:${{ github.sha }}
-{% endhighlight %}
+```
 
 ### Second step
 Publish your docker image from registry to k8s cluster.
@@ -178,23 +178,23 @@ First of all need a create a token on github with `read:package` scope and creat
 
 Let's Base64 encode it first:
 
-{% highlight bash %}
+```bash
 echo -n "username:your_token" | base64
 #example of output: dXNlcm5hbWU6eW91cl90b2tlbg==
-{% endhighlight %}
+```
 
 > Change `username` for your GitHub username and `your_token` with the previous generated token
 
 Create a json and encode to Base64 again:
 
-{% highlight bash %}
+```bash
 echo -n  '{"auths":{"ghcr.io":{"auth":"dXNlcm5hbWU6eW91cl90b2tlbg=="}}}' | base64
 #example of output: eyJhdXRocyI6eyJnaGNyLmlvIjp7ImF1dGgiOiJkWE5sY201aGJXVTZlVzkxY2w5MGIydGxiZz09In19fQ==
-{% endhighlight %}
+```
 
 Create a manifest to deploy your application on kuberntes `deployment`, `service`, `ingress`
 
-{% highlight yaml %}
+```yaml
 #infrastructure/kubernetes/demo-app-deployment.yml
 
 apiVersion: apps/v1
@@ -231,9 +231,9 @@ spec:
                     port: 80
                 initialDelaySeconds: 5
                 periodSeconds: 3
-{% endhighlight %}
+```
 
-{% highlight yaml %}
+```yaml
 #infrastructure/kubernetes/demo-app-service.yml
 
 apiVersion: v1
@@ -248,9 +248,9 @@ spec:
     type: NodePort
     selector:
         app: demo-app
-{% endhighlight %}
+```
 
-{% highlight yaml %}
+```yaml
 #infrastructure/kubernetes/demo-app-ingress.yml
 
 apiVersion: networking.k8s.io/v1
@@ -271,11 +271,11 @@ spec:
                           name: demo-app
                           port:
                             number: 80
-{% endhighlight %}
+```
 
 Finally, once we have the manifests and secrets, we can create the last step of the workflow.
 
-{% highlight yaml %}
+```yaml
 deploy:
   needs: [build]
   runs-on: ubuntu-latest
@@ -308,11 +308,11 @@ deploy:
             ./infrastructure/kubernetes/demo-app-service.yml
             ./infrastructure/kubernetes/demo-app-ingress.yml
           images: ghcr.io/${{ github.repository }}/demo-app:${{ github.sha }}
-{% endhighlight %}
+```
 
 And just commit in your project the complete CD workflow config `.github/workflow/cd.yaml`.
 
-{% highlight yaml %}
+```yaml
 name: CD
 
 on:
@@ -375,7 +375,7 @@ jobs:
             ./infrastructure/kubernetes/demo-app-service.yml
             ./infrastructure/kubernetes/demo-app-ingress.yml
           images: ghcr.io/${{ github.repository }}/demo-app:${{ github.sha }}
-{% endhighlight %}
+```
 
 Then you can go to `Actions` section in your repository and show all workflows and you can see the summary.
 

@@ -31,7 +31,7 @@ Firstly create a custom collection without type validation and add some callable
 
 > src/Shared/Domain/Read/Collection.php
 
-{% highlight php %}
+```php
 <?php
 
 declare(strict_types=1);
@@ -129,7 +129,7 @@ abstract class Collection implements IteratorAggregate
         return new ArrayIterator($this->elements);
     }
 }
-{% endhighlight %}
+```
 
 ## Custom typed Collection:
 The typed collection extends the above collection and implements the constraints.
@@ -138,7 +138,7 @@ The typed collection extends the above collection and implements the constraints
 
 > src/Shared/Domain/Read/TypedCollection.php
 
-{% highlight php %}
+```php
 <?php
 
 declare(strict_types=1);
@@ -165,12 +165,12 @@ abstract class TypedCollection extends Collection
         parent::add($element);
     }
 }
-{% endhighlight %}
+```
 
 ## Example implement Typed Collection:
 First of all, we need a create a basic Entity Class, in this case create a simple class called `Foo`.
 
-{% highlight php %}
+```php
 <?php
 
 declare(strict_types=1);
@@ -198,13 +198,13 @@ final readonly class Foo
         return $this->id === $other->id && $this->name === $other->name;
     }
 }
-{% endhighlight %}
+```
 
 Then can create a typed collection that contain a Foo inside
 
 > src/Context/Foo/Domain/Read/View/FooCollection.php
 
-{% highlight php %}
+```php
 <?php
 
 declare(strict_types=1);
@@ -220,12 +220,12 @@ final class FooCollection extends TypedCollection
         return Foo::class;
     }
 }
-{% endhighlight %}
+```
 
 ## Some examples of how to use it
 Create an empty collection, then add two `Foo` elements and filter elements with `other` name:
 
-{% highlight php %}
+```php
 $collection = FooCollection::createEmpty();
 $collection->add(new Foo('4dae0971-ac81-43f1-b7e1-952df598af5a', 'name'));
 $collection->add(new Foo('42deac29-9661-47e8-8746-062fc784ae1b', 'other'));
@@ -239,11 +239,11 @@ $filteredCollection = $collection->filter(function(Foo $foo) {
 # Or if you prefer you can use Arrow function version
 
 $filteredCollection = $collection->filter(fn (Foo $foo) => $foo->mame === 'other');
-{% endhighlight %}
+```
 
 Create collection from map function using array :
 
-{% highlight php %}
+```php
 $array = [
   [
     'id' => '4dae0971-ac81-43f1-b7e1-952df598af5a',
@@ -269,11 +269,11 @@ $collection = FooCollection::fromMap(
     $array,
     fn(array $data): Foo => new Foo($data['id'], $data['name'])
 );
-{% endhighlight %}
+```
 
 Concat different function with arrow functions:
 
-{% highlight php %}
+```php
 $array = [
   [
     'id' => '4dae0971-ac81-43f1-b7e1-952df598af5a',
@@ -294,6 +294,6 @@ $collection = FooCollection::fromMap(
 )
 ->filter(fn (Foo $foo) => $foo->mame === 'other')
 ->map(fn (Foo $foo) => $foo->toArray());
-{% endhighlight %}
+```
 
 You can read the article on [Medium](https://medium.com/@albertcolom/use-custom-php-collection-instead-array-57700858cf1a){:target="_blank"}

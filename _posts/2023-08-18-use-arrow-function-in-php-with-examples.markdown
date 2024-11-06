@@ -26,7 +26,7 @@ Arrow functions are defined using the `fn` keyword, followed by the function par
 
 Here we can see a basic example of how to implement it.
 
-{% highlight php %}
+```php
 // Anonymous function
 $add = function($a, $b) {
     return $a + $b;
@@ -37,11 +37,11 @@ $addArrow = fn($a, $b) => $a + $b;
 
 echo $add(2, 3);        // Output: 5
 echo $addArrow(2, 3);   // Output: 5
-{% endhighlight %}
+```
 
 Arrow functions can also capture variables from the surrounding scope, unlike traditional closures, arrow functions do not need to be explicitly defined variables from scope.
 
-{% highlight php %}
+```php
 $factor = 10;
 
 // Closure
@@ -54,7 +54,7 @@ $multiplierArrow = fn($n) => $n * $factor;
 
 echo $multiplier(5);        // Output: 50
 echo $multiplierArrow(5);   // Output: 50
-{% endhighlight %}
+```
 
 ### Examples
 
@@ -70,7 +70,7 @@ _“Applies the callback to the elements of the given arrays”_
 
 > array_map(?[callable](https://www.php.net/manual/en/language.types.callable.php){:target="_blank"} `$callback`, array `$array`, array `...$arrays`): array
 
-{% highlight php %}
+```php
 $numbers = [1, 2, 3, 4, 5];
 
 // Anonymous function with array_map
@@ -101,7 +101,7 @@ print_r($squaredArrow);
 //  [3] => 16
 //  [4] => 25
 //)
-{% endhighlight %}
+```
 
 #### Using Arrow Functions with Array Filter
 
@@ -112,7 +112,7 @@ Filters elements of an array using a callback function
 
 > array_filter(array `$array`, ?[callable](https://www.php.net/manual/en/language.types.callable.php){:target="_blank"} `$callback` = null, int `$mode` = 0): array
 
-{% highlight php %}
+```php
 $numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 // Anonymous function with array_filter
@@ -143,7 +143,7 @@ print_r($evenNumbersArrow);
 //  [7] => 8
 //  [9] => 10
 //)
-{% endhighlight %}
+```
 
 #### Using Arrow Functions with Array Reduce
 
@@ -153,7 +153,7 @@ _“Iteratively reduce the array to a single value using a callback function”_
 
 > array_reduce(array `$array`, [callable](https://www.php.net/manual/en/language.types.callable.php){:target="_blank"} `$callback`, mixed `$initial` = null): mixed
 
-{% highlight php %}
+```php
 $numbers = [1, 2, 3, 4, 5];
 
 // Anonymous function with array_reduce
@@ -166,7 +166,7 @@ $sumNumbersArrow = array_reduce($numbers, fn($carry, $number) => $carry + $numbe
 
 echo $sumNumbers;       // Output: 15
 echo $sumNumbersArrow;  // Output: 15
-{% endhighlight %}
+```
 
 #### Using Arrow Functions with usort
 
@@ -176,7 +176,7 @@ _“Sort an array by values using a user-defined comparison function”_
 
 > usort(array `&$array`, [callable](https://www.php.net/manual/en/language.types.callable.php){:target="_blank"} `$callback`): true
 
-{% highlight php %}
+```php
 $people = [
     ['name' => 'Alice', 'age' => 28],
     ['name' => 'Bob', 'age' => 22],
@@ -215,7 +215,7 @@ print_r($people);
 //    )
 //
 //)
-{% endhighlight %}
+```
 
 I think that with these examples we can see how to implement the arrow functions in the most common cases.
 
