@@ -379,6 +379,4 @@ migrate-force: ## Migration force version
 
 The code for this tutorial can be found in the public: [GitHub - albertcolom/example-go-migration](https://github.com/albertcolom/example-go-migration)
 
----
-
 You can read the article on [Medium](https://medium.com/@albertcolom/easy-steps-to-install-k3s-with-ssl-certificate-by-traefik-cert-manager-and-lets-encrypt-d74947fe7a8){:target="_blank"}
