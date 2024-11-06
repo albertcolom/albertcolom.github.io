@@ -44,7 +44,7 @@ To follow this article you'll need: [Go](https://go.dev/) and [Docker](https://w
 
 Create the file `docker-compose.yml` in your root directory where we'll define your favourite DB, in my case use a MariaDB but feel free to use another one.
 
-{% highlight yaml %}
+```yaml
 services:
   mariadb:
     image: mariadb:11.5.2
@@ -62,21 +62,21 @@ volumes:
   mariadbdata:
     driver: local
 
-docker compose up -d
-{% endhighlight %}
+docker compose up -d 
+```
 
 If you prefer you can use Docker directly instead of docker-compose:
 
-{% highlight bash %}
+```bash
 docker volume create -d local mariadbdata
 docker run --name mariadb_example_go_migration -p 3306:3306 -e MYSQL_DATABASE=app -e MYSQL_ROOT_PASSWORD=root -e TZ=Europe/Berlin -v mariadbdata:/var/lib/mysql mariadb:11.5.2
-{% endhighlight %}
+```
 
 ### Environment values
 
 Create or update the file `.env` in your root directory where you need to define the variables to connect our data base.
 
-```
+```bash
 DATABASE_DSN=root:root@tcp(localhost:3306)/app
 ```
 
@@ -84,7 +84,7 @@ DATABASE_DSN=root:root@tcp(localhost:3306)/app
 
 Create a simple golang application to ensure successful DB connection and list all tables and estructure in the database with their structure. `cmd/main.go`
 
-{% highlight go %}
+```go
 package main
 
 import (
@@ -162,7 +162,7 @@ func main() {
   w.Flush()
  }
 }
-{% endhighlight %}
+```
 
 And when we run it we have a similar output:
 
@@ -177,11 +177,11 @@ Personally I prefer de docker variant but in this tutorial illustrate both varia
 
 The first step is create an empty migration with the next command.
 
-```
+```bash
 #CLI variant
 migrate create -ext sql -dir ./database/migrations -seq create_users_table
 ```
-```
+```bash
 #Docker CLI variant
 docker run --rm -v $(pwd)/database/migrations:/migrations migrate/migrate \
     create -ext sql -dir /migrations -seq create_users_table
@@ -195,7 +195,7 @@ This command will be generated two empty files on `database/migrations/` folder:
 
 On `000001\create\users\table.up.sql` file define SQL for create a table users:
 
-```
+```sql
 CREATE TABLE `users` (
     `id` VARCHAR(36) NOT NULL PRIMARY KEY,
     `name` VARCHAR(255) NOT NULL,
@@ -206,7 +206,7 @@ CREATE TABLE `users` (
 
 On `000001\create\users\table.down.sql` file define SQL to revert all changes made by `up`, in this case we have to delete `users` table:
 
-```
+```sql
 DROP TABLE IF EXISTS `users`;
 ```
 
@@ -214,11 +214,11 @@ DROP TABLE IF EXISTS `users`;
 
 The following command applies all pending migrations. You can also define the number of migrations to apply by adding the number after the `up`.
 
-```
+```bash
 #CLI variant
 migrate -path=./database/migrations -database "mysql://root:root@tcp(localhost:3306)/app" up
 ```
-```
+```bash
 #Docker CLI variant
 docker run --rm -v $(pwd)/database/migrations:/migrations --network host migrate/migrate \
     -path=/migrations -database "mysql://root:root@tcp(localhost:3306)/app" up
@@ -237,7 +237,7 @@ And run our Golang application to display the results:
 
 Add a new column `phone` on `users` table
 
-```
+```bash
 #CLI variant
 migrate create -ext sql -dir ./database/migrations -seq add_column_phone
 
@@ -245,15 +245,15 @@ migrate create -ext sql -dir ./database/migrations -seq add_column_phone
 docker run --rm -v $(pwd)/database/migrations:/migrations migrate/migrate \
     create -ext sql -dir /migrations -seq add_column_phone
 ```
-```
+```sql
 -- 000002_add_column_phone.up.sql
 ALTER TABLE `users` ADD `phone` VARCHAR(255) NULL;
 ```
-```
+```sql
 -- 000002_add_column_phone.down.sql
 ALTER TABLE `users` DROP `phone`;
 ```
-```
+```bash
 #CLI variant
 migrate -path=./database/migrations -database "mysql://root:root@tcp(localhost:3306)/app" up
 
@@ -270,11 +270,11 @@ And when you run it from our Golang application you can see the new field:
 
 With the following command we can easily rollback the applied. migrations. In the following example we can see how we reverse the last migration applied:
 
-```
+```bash
 #CLI variant
 migrate -path=./database/migrations -database "mysql://root:root@tcp(localhost:3306)/app" down 1
 ```
-```
+```bash
 #Docker CLI variant
 docker run --rm -it -v $(pwd)/database/migrations:/migrations --network host migrate/migrate \
     -path=/migrations -database "mysql://root:root@tcp(localhost:3306)/app" down 1
@@ -292,7 +292,7 @@ If a migration contains errors and is executed, that migration cannot be applied
 
 And when trying to apply we will get a message like this:
 
-```
+```bash
 error: Dirty database version 2. Fix and force version.
 ```
 
@@ -301,11 +301,11 @@ First we have to resolve the corrupted migration, in this case version `2`.
 
 Once the migration is solved we have to force the system to the last valid version, in this case version `1`.
 
-```
+```bash
 #CLI variant
 migrate -path=./database/migrations -database "mysql://root:root@tcp(localhost:3306)/app" force 1
 ```
-```
+```bash
 #Docker CLI variant
 docker run --rm -it -v $(pwd)/database/migrations:/migrations --network host migrate/migrate \
     -path=/migrations -database "mysql://root:root@tcp(localhost:3306)/app" force 1
@@ -319,7 +319,7 @@ To improve our productivity and facilitate the use of these commands we can use 
 
 CLI variant
 
-```
+```make
 include .env
 
 .PHONY: help create-migration migrate-up migrate-down migrate-force
@@ -346,7 +346,7 @@ migrate-force: ## Migration force version
 
 Docker CLI variant
 
-```
+```make
 include .env
 
 .PHONY: help create-migration migrate-up migrate-down migrate-force
