@@ -193,9 +193,9 @@ docker run --rm -v $(pwd)/database/migrations:/migrations migrate/migrate \
 - `dir`: Directory where our migration will be created.
 - `seq`: Migration sequence name.
 
-This command will be generated two empty files on `database/migrations/` folder: `000001\create\users\table.up.sql` and `000001\create\users\table.down.sql`
+This command will be generated two empty files on `database/migrations/` folder: `000001_create_users_table.up.sql` and `000001_create_users_table.down.sql`
 
-On `000001\create\users\table.up.sql` file define SQL for create a table users:
+On `000001_create_users_table.up.sql` file define SQL for create a table users:
 
 ```sql
 CREATE TABLE `users` (
@@ -206,7 +206,7 @@ CREATE TABLE `users` (
 );
 ```
 
-On `000001\create\users\table.down.sql` file define SQL to revert all changes made by `up`, in this case we have to delete `users` table:
+On `000001_create_users_table.down.sql` file define SQL to revert all changes made by `up`, in this case we have to delete `users` table:
 
 ```sql
 DROP TABLE IF EXISTS `users`;
