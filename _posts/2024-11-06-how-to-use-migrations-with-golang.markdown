@@ -61,7 +61,9 @@ services:
 volumes:
   mariadbdata:
     driver: local
+```
 
+```bash
 docker compose up -d 
 ```
 
